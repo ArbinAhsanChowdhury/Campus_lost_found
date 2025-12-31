@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Lost & Found System</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo"><i class="fas fa-search"></i> Campus Lost & Found</h1>
+            <div class="nav-links">
+                <a href="#report" class="nav-link">Report</a>
+                <a href="#search" class="nav-link">Search</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Lost Something on Campus?</h2>
+            <p>Connect with fellow students to find your lost items or return found items</p>
+            <div class="cta-buttons">
+                <button class="btn btn-primary" onclick="showReportForm('lost')">
+                    <i class="fas fa-exclamation-circle"></i> Report Lost Item
+                </button>
+                <button class="btn btn-secondary" onclick="showReportForm('found')">
+                    <i class="fas fa-hand-holding-heart"></i> Report Found Item
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Report Form (Initially Hidden) -->
+    <section id="report-form" class="report-section" style="display: none;">
+        <div class="container">
+            <h2 id="form-title">Report Item</h2>
+            <form id="itemForm" class="item-form">
+                <input type="hidden" id="itemType" value="">
+                <input type="hidden" id="itemId" value="">
+                
+                <div class="form-group">
+                    <label for="itemName"><i class="fas fa-tag"></i> Item Name</label>
+                    <input type="text" id="itemName" placeholder="e.g., Water Bottle, ID Card" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="location"><i class="fas fa-map-marker-alt"></i> Location</label>
+                        <input type="text" id="location" placeholder="Where was it lost/found?" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="date"><i class="fas fa-calendar-alt"></i> Date</label>
+                        <input type="date" id="date" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description"><i class="fas fa-align-left"></i> Description</label>
+                    <textarea id="description" rows="3" placeholder="Color, brand, distinguishing features..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="contact"><i class="fas fa-envelope"></i> Contact Info</label>
+                    <input type="text" id="contact" placeholder="Email or phone number" required>
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-secondary" onclick="hideForm()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Submit Report</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section id="search" class="search-section">
+        <div class="container">
+            <h2><i class="fas fa-search"></i> Search Items</h2>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search by item name, location, description...">
+                <button class="btn btn-primary" onclick="searchItems()">
+                    <i class="fas fa-search"></i> Search
+                </button>
+                <select id="filterType" onchange="filterItems()">
+                    <option value="all">All Items</option>
+                    <option value="lost">Lost Items</option>
+                    <option value="found">Found Items</option>
+                </select>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <h3 id="totalCount">0</h3>
+                    <p>Total Items</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="lostCount">0</h3>
+                    <p>Lost Items</p>
+                </div>
+                <div class="stat-card">
+                    <h3 id="foundCount">0</h3>
+                    <p>Found Items</p>
+                </div>
+            </div>
+            
+            <div id="itemsList" class="items-container">
+                <!-- Items will be loaded here by JavaScript -->
+                <p class="empty-message">No items reported yet. Be the first to report!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>About This Project</h2>
+            <div class="about-content">
+                <div class="about-card">
+                    <i class="fas fa-laptop-code fa-3x"></i>
+                    <h3>Hackathon Project</h3>
+                    <p>Built for CSE 1110-1116 Hackathon. Console version uses Python with file I/O. Web version uses HTML/CSS/JS.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-bullseye fa-3x"></i>
+                    <h3>Our Mission</h3>
+                    <p>Solve real campus problems by connecting students who lose items with those who find them.</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-code-branch fa-3x"></i>
+                    <h3>Future Plans</h3>
+                    <p>Add user accounts, notifications, image uploads, and mobile app version.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2023 Campus Lost & Found System | CSE Hackathon Project</p>
+            <p class="github-link">
+                <i class="fab fa-github"></i> 
+                <a href="https://github.com/yourusername/lost-and-found" target="_blank">View on GitHub</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
